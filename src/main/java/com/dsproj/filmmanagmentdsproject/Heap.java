@@ -28,7 +28,7 @@ public class Heap<T>
     public void Insert(T item)
     {
         if(size >= heap.length)//checking if we have enough size or not
-            throw new IllegalStateException("Heap is full"); //throwing error
+            resize(); //resize if heap is full
         heap[size] = item;
         size++;
         heapifyUp(size - 1);
@@ -89,6 +89,13 @@ public class Heap<T>
         T temp = heap[a];
         heap[a] = heap[b];
         heap[b] = temp;
+    }
+    
+    void resize()
+    {
+        T[] newHeap = (T[]) new Object[heap.length * 2];
+        System.arraycopy(heap, 0, newHeap, 0, heap.length);
+        heap = newHeap;
     }
     
     public boolean isEmpty()
