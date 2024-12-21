@@ -8,15 +8,14 @@ package com.dsproj.filmmanagmentdsproject;
  *
  * @author Ali Badalov 220315106
  */
-public class Node<T>
+public class Entry<K, V>
 {
-    //Using generic variables to make this work for any type of variable.
-    T data; //Generic value
-    Node next;
+    K key;
+    V value;
     
-    //Constructor
-    Node(T data)
+    Entry(K key, V value)
     {
-        this.data = data;
+        this.key = key;
+        this.value = value;
     }
 }

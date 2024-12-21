@@ -10,39 +10,108 @@ package com.dsproj.filmmanagmentdsproject;
  */
 public class HashTable<K, V> //adding K and V to make it generic
 {
-    LinkedList<K, V>[] table; //linked list to store variables
-    int size; //the capacity of our hash table
+    LinkedList<Entry>[] table; //linked list to store variables
+    int capacity; //maximum capacity of the hash table
+    int size; //the size of our hash table
     
-    public HashTable(int size)
+    public HashTable(int capacity)
     {
-        this.size = size; // setting the size
-        table = new LinkedList[size]; //setting the table
-        for(int i = 0; i < size; i++)
+        this.capacity = capacity;
+        this.table = new LinkedList[capacity];
+        this.size = 0;
+        
+        for(int i = 0; i < capacity; i++) //initializing each bucket
         {
-            table[i] = new LinkedList<>(); // linked lists for each slot to store values
+            table[i] = new LinkedList<>();
         }
     }
     
-    private int hashFunction(K key)
+    private int hash(K key) //hash function
     {
-        return Math.abs(key.hashCode()) % size; //the hash function to store the values
+        return Math.abs(key.hashCode()) % capacity;
     }
     
-    public void Put(K key, V value) //the function to put the values into hash table
+    public void put(K key, V value) //inserting or updating key-value pair
     {
-        int index = hashFunction(key); //getting the index with hash function
-        table[index].Add(key, value); //adding value to hash table.
-        //We are using linear probing to avoid collisions, that's why we are using linked list.
+        int bucketIndex = hash(key);
+        LinkedList<Entry> bucket = table[bucketIndex];
+        
+        //checking if the key already exists or not
+        Node<Entry> current = bucket.getHead(); //setting node to head of the list
+        while(current != null) //looking trough the linked list
+        {
+            if(current.data.key.equals(key))
+            {
+                current.data.value = value; // assigning the value
+                return;
+            }
+            current = current.next;
+        }
+        bucket.Add(new Entry(key, value)); //adding the key if it doesn't exist
+        size++; //increasing the size
     }
     
-    public V Get(K key) //getting the key
+    public V get(K key) //returning a value with specific key
     {
-        int index = hashFunction(key); //get index with hash function
-        return table[index].GetValue(key); //return the value with key
+        int bucketIndex = hash(key);
+        LinkedList<Entry> bucket = table[bucketIndex];
+        
+        Node<Entry> current = bucket.getHead(); //setting node to get head of the list
+        while(current != null) //looking through the list again
+        {
+            if(current.data.key.equals(key))
+                return (V) current.data.value; //if found, returning it
+            current = current.next;
+        }
+        
+        return null; //not found, returning null
     }
     
-    public boolean containsKey(K key) //check if key exists
+    //removing key-value pair
+    public boolean remove(K key)
     {
-        return Get(key) != null; //return true or false accordingly
+        int bucketIndex = hash(key);
+        LinkedList<Entry> bucket = table[bucketIndex];
+        
+        //getting nodes
+        Node<Entry> current = bucket.getHead();
+        Node<Entry> prev = null;
+        
+        while(current != null) //looking through the list
+        {
+            if(current.data.key.equals(key)) //found it
+            {
+                if(prev == null) //checking if its head
+                    bucket.setHead(current.next); //removing the head
+                else
+                    prev.next = current.next; //bypasing the value
+                size--; //reducing the size
+                return true;
+            }
+            prev = current; 
+            current = current.next; //going through
+        }
+        return false; //key not found
+    }
+    
+    public int size()
+    {
+        return size;
+    }
+    
+    public boolean isEmpty()
+    {
+        return size == 0;
+    }
+    
+    //printing the table out
+    public void printTable()
+    {
+        for(int i = 0; i < capacity; i++)
+        {
+            System.out.println("Bucket " + i + ": "); //printing each bucket and values
+            table[i].printList();
+            System.out.println();
+        }
     }
 }

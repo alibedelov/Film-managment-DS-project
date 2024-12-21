@@ -8,7 +8,7 @@ package com.dsproj.filmmanagmentdsproject;
  *
  * @author Ali Badalov 220315106
  */
-public class LinkedList<K, V> //added K for key and V for value to make it generic
+public class LinkedList<T> //making this generic
 {
     Node head; //Head of the linked list
     
@@ -17,46 +17,69 @@ public class LinkedList<K, V> //added K for key and V for value to make it gener
         head = null; //if its newly initialized, make head null
     }
     
-    public void Add(K key, V value) //adding variable to the linked list with key
+    public void Add(T data) //adding variable to the linked list from the head
     {
-        if(head == null)
-        {
-            head = new Node(key, value); //if the node is null, make this variable the head
-            return;
-        }
-        //head is not null, continueing the proccess.
-        Node current = head;
-        
-        while(current.next != null) //going until we find the last node in the linked list
-        {
-            if(current.key.equals(key)) 
-            {
-                current.value = value; //if key exists, lets update it
-                return;
-            }
-            current = current.next;
-        }
-        
-        if(current.key.equals(key)) //again if key exists update it
-            current.value = value;
-        else
-            current.next = new Node(key, value); //key doesnt exist, add new node
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head = newNode;
     }
     
-    public V GetValue(K key) //getting value from the linked list
+    public T Find(T target) //finding value
     {
         Node current = head;
         while(current != null) //going til the end
         {
-            if(current.key.equals(key)) 
-                return (V) current.value; //if found the value we are looking for, return it
+            if(current.data.equals(target)) 
+                return (T) current.data; //if found the value we are looking for, return it
             current = current.next; //go til the end
         }
         return null; //couldn't find it, returning null
     }
     
-    public boolean ContainsKey(K key) //checking if we have the key
+    public boolean ContainsKey(T data) //checking if we have the key
     {
-        return GetValue(key) != null; //returning true or false depending if key exists or not
+        return Find(data) != null; //returning true or false depending if key exists or not
+    }
+    
+    public boolean Remove(T target)
+    {
+        Node current = head;
+        Node prev = null;
+        
+        while(current != null)
+        {
+            if(current.data.equals(target))
+            {
+                if(prev == null)
+                    head = current.next; //removing the head
+                else
+                    prev.next = current.next; //bypassing the node
+                return true;
+            }
+            prev = current;
+            current = current.next;
+        }
+        return false;
+    }
+    
+    public void printList()
+    {
+        Node current = head;
+        while(current != null)
+        {
+            System.out.print(current.data + "->");
+            current = current.next;
+        }
+        System.out.println("Null");
+    }
+    
+    public Node<T> getHead()
+    {
+        return head;
+    }
+    
+    public void setHead(Node<T> newHead)
+    {
+        this.head = newHead;
     }
 }
