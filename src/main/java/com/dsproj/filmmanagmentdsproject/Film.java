@@ -14,6 +14,7 @@ public class Film {
     String genre;
     int releaseYear;
     String totalRevenue;
+    long totalRev;
     StringList reviews = new StringList();  // Custom String list
     DoubleList ratings = new DoubleList();  // Custom Double list
 
@@ -43,6 +44,15 @@ public class Film {
     // Method to get ratings as an array of primitive doubles
     public double[] getRatings() {
         return ratings.toArray();  // Converts DoubleList to a primitive double array
+    }
+    
+    public long getTotalRevenue() {
+        return totalRev;
+    }
+    
+    public int getReleaseYear()
+    {
+        return releaseYear;
     }
 
     // Example to display film details

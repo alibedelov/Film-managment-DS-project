@@ -8,98 +8,119 @@ package com.dsproj.filmmanagmentdsproject;
  *
  * @author Ali Badalov 220315106
  */
-public class Heap<T>
+public class Heap
 {
-    interface CompareFunction<U> {
-        int compare(U o1, U o2); //Comparing function to use in heap
-    }
-    
-    T[] heap; //our heap
+    Film[] heap; //Film array to store the heap
     int size; //size of the heap
-    CompareFunction<T> comparator; //the comparator
+    int capacity; //maximum capacity of the heap
     
-    public Heap(int capacity, CompareFunction<T> comparator)
+    
+    public Heap(int capacity) //Heap constructor
     {
-        this.heap = (T[]) new Object[capacity]; //making generic array
+        this.capacity = capacity;
+        this.heap = new Film[capacity];
         this.size = 0;
-        this.comparator = comparator;
     }
     
-    public void Insert(T item)
+    private int getParent(int index) //getting the index of the parent node
     {
-        if(size >= heap.length)//checking if we have enough size or not
-            resize(); //resize if heap is full
-        heap[size] = item;
-        size++;
-        heapifyUp(size - 1);
+        return(index - 1) / 2;
     }
     
-    public T ExtractRoot()
+    private int getLeftChild(int index) //getting the left child
+    {
+        return 2 * index + 1;
+    }
+    
+    private int getRightChild(int index) //getting the right child
+    {
+        return 2 * index + 2;
+    }
+    
+    private void swap(int a, int b) //swapping 2 elements
+    {
+        Film tempFilm = heap[a];
+        heap[a] = heap[b];
+        heap[b] = tempFilm;
+    }
+    
+    
+    public void insert(Film film) //inserting new film to heap
+    {
+        if (size == capacity) 
+        {
+            System.out.println("Oh no, heap is full!");
+            return;
+        }
+        heap[size] = film; // inserting to the end
+        size++;
+
+        // Heapify-up
+        int currentIndex = size - 1;
+        while (currentIndex > 0 && compareFilms(heap[currentIndex], heap[getParent(currentIndex)]) > 0) 
+        {
+            swap(currentIndex, getParent(currentIndex));
+            currentIndex = getParent(currentIndex);
+        }
+    }
+    
+    public Film removeTop() //remove the most popular film
     {
         if(size == 0)
-            throw new IllegalStateException("Heap is empty");
-        T root = heap[0];
+        {
+            System.out.println("Hey, the heap is empty!");
+            return null;
+        }
+        
+        Film top = heap[0];
         heap[0] = heap[size - 1];
         size--;
+        
         heapifyDown(0);
-        return root;
+        
+        return top;
     }
     
-    void heapifyUp(int index)
+    private void heapifyDown(int index)
     {
-        while(index > 0)
+        int largest = index;
+        int leftChild = getLeftChild(index);
+        int rightChild = getRightChild(index);
+        
+        // comparing with left child
+        if (leftChild < size && compareFilms(heap[leftChild], heap[largest]) > 0) 
         {
-            int parentIndex = (index - 1) / 2;
-            if(comparator.compare(heap[index], heap[parentIndex]) > 0)
-            {
-                swap(index, parentIndex);
-                index = parentIndex;
-            }
-            else
-                break;
+            largest = leftChild;
+        }
+
+        // comparing with right child
+        if (rightChild < size && compareFilms(heap[rightChild], heap[largest]) > 0) 
+        {
+            largest = rightChild;
+        }
+
+        // swapping and recursing if needed
+        if (largest != index) 
+        {
+            swap(index, largest);
+            heapifyDown(largest);
         }
     }
     
-    void heapifyDown(int index)
+    private int compareFilms(Film f1, Film f2) //moment of truth. The tie-breaker
     {
-        int leftChild, rightChild, largest;
-        while(index < size / 2)
+        if (f1.getTotalRevenue() != f2.getTotalRevenue()) 
         {
-            leftChild = 2 * index + 1;
-            rightChild = 2 * index + 2;
-            largest = index;
-            
-            if(leftChild < size && comparator.compare(heap[leftChild], heap[largest]) > 0)
-                largest = leftChild;
-            if(rightChild < size && comparator.compare(heap[rightChild], heap[largest]) > 0)
-                largest = rightChild;
-            
-            if(largest != index)
-            {
-                swap(index, largest);
-                index = largest;
-            }
-            else
-                break;
+            return Long.compare(f1.getTotalRevenue(), f2.getTotalRevenue());
         }
+        return Integer.compare(f2.getReleaseYear(), f1.getReleaseYear()); // Older films get higher rank in tie
     }
-    
-    void swap(int a, int b)
+
+    public void printHeap() //printing the heap for list view
     {
-        T temp = heap[a];
-        heap[a] = heap[b];
-        heap[b] = temp;
-    }
-    
-    void resize()
-    {
-        T[] newHeap = (T[]) new Object[heap.length * 2];
-        System.arraycopy(heap, 0, newHeap, 0, heap.length);
-        heap = newHeap;
-    }
-    
-    public boolean isEmpty()
-    {
-        return size == 0;
+        for (int i = 0; i < size; i++) 
+        {
+            System.out.println(heap[i]);
+        }
     }
 }
