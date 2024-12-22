@@ -10,7 +10,7 @@ package com.dsproj.filmmanagmentdsproject;
  */
 public class Heap
 {
-    Film[] heap; //Film array to store the heap
+    FilmJ[] heap; //Film array to store the heap
     int size; //size of the heap
     int capacity; //maximum capacity of the heap
     
@@ -18,7 +18,7 @@ public class Heap
     public Heap(int capacity) //Heap constructor
     {
         this.capacity = capacity;
-        this.heap = new Film[capacity];
+        this.heap = new FilmJ[capacity];
         this.size = 0;
     }
     
@@ -39,13 +39,13 @@ public class Heap
     
     private void swap(int a, int b) //swapping 2 elements
     {
-        Film tempFilm = heap[a];
+        FilmJ tempFilm = heap[a];
         heap[a] = heap[b];
         heap[b] = tempFilm;
     }
     
     
-    public void insert(Film film) //inserting new film to heap
+    public void insert(FilmJ film) //inserting new film to heap
     {
         if (size == capacity) 
         {
@@ -64,7 +64,7 @@ public class Heap
         }
     }
     
-    public Film removeTop() //remove the most popular film
+    public FilmJ removeTop() //remove the most popular film
     {
         if(size == 0)
         {
@@ -72,7 +72,7 @@ public class Heap
             return null;
         }
         
-        Film top = heap[0];
+        FilmJ top = heap[0];
         heap[0] = heap[size - 1];
         size--;
         
@@ -107,11 +107,11 @@ public class Heap
         }
     }
     
-    private int compareFilms(Film f1, Film f2) //moment of truth. The tie-breaker
+    private int compareFilms(FilmJ f1, FilmJ f2) //moment of truth. The tie-breaker
     {
         if (f1.getTotalRevenue() != f2.getTotalRevenue()) 
         {
-            return Long.compare(f1.getTotalRevenue(), f2.getTotalRevenue());
+            return Double.compare(f1.getTotalRevenue(), f2.getTotalRevenue());
         }
         return Integer.compare(f2.getReleaseYear(), f1.getReleaseYear()); // Older films get higher rank in tie
     }

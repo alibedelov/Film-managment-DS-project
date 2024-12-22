@@ -10,16 +10,16 @@ package com.dsproj.filmmanagmentdsproject;
  */
 public class Recommendations 
 {
-    HashTable<String, LinkedList<Film>> genreTable;
+    HashTable<String, LinkedList<FilmJ>> genreTable;
     
     public Recommendations(int capacity) //constructor
     {
         this.genreTable = new HashTable<>(capacity);
     }
     
-    public void addFilmByGenre(String genre, Film film) //adding films by genre
+    public void addFilmByGenre(String genre, FilmJ film) //adding films by genre
     {
-        LinkedList<Film> films = genreTable.get(genre); //making linked list for films
+        LinkedList<FilmJ> films = genreTable.get(genre); //making linked list for films
         if(films == null)
         {
             films = new LinkedList<>();
@@ -28,20 +28,20 @@ public class Recommendations
         films.Add(film);
     }
     
-    public LinkedList<Film> getRecommendations(String genre) //getting recommendations
+    public LinkedList<FilmJ> getRecommendations(String genre) //getting recommendations
     {
         return genreTable.get(genre);
     }
     
-    public boolean removeFilmByGenre(String genre, Film film) //removing film by genre
+    public boolean removeFilmByGenre(String genre, FilmJ film) //removing film by genre
     {
-        LinkedList<Film> films = genreTable.get(genre);
+        LinkedList<FilmJ> films = genreTable.get(genre);
         if(films == null)
             return false; //coulnd't find the genre
         
         //traversing and removing the film
-        Node<Film> current = films.getHead();
-        Node<Film> prev = null;
+        Node<FilmJ> current = films.getHead();
+        Node<FilmJ> prev = null;
         
         while(current != null) //going trough the list
         {
