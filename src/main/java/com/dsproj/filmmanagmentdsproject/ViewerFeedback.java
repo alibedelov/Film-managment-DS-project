@@ -8,7 +8,7 @@ package com.dsproj.filmmanagmentdsproject;
  *
  * @author Fatma Alsaghir 220315105
  */
-public class RevenueManager {
+public class ViewerFeedback {
     private static class Feedback {
         String review;
         int rating;
