@@ -8,6 +8,7 @@ package com.dsproj.filmmanagmentdsproject;
  *
  * @author Ftama Alsaghir 220315105
  * @param <T>
+ */
 public class BST<T extends Comparable<T>> {
     private static class Node<T> {
         T data;
