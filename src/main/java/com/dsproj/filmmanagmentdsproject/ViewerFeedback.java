@@ -15,7 +15,7 @@ public class ViewerFeedback {
 
         public Feedback(String review, int rating) {
             if (rating < 1 || rating > 10) {
-                throw new IllegalArgumentException("Rating must be between 1 and 10.");
+                throw new IllegalArgumentException("Rate between 1 and 10");
             }
             this.review = review;
             this.rating = rating;
