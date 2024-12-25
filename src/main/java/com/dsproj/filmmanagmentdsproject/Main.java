@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Fatma Alsaghir 220315105 Ali Badalov 220315106
+ * @author Ali Badalov 220315106
  */
 public class Main {
     public static void main(String[] args) 
