@@ -11,6 +11,7 @@ package com.dsproj.filmmanagmentdsproject;
 public class LinkedList<T> //making this generic
 {
     Node head; //Head of the linked list
+    int size;
     
     LinkedList()
     {
@@ -22,6 +23,7 @@ public class LinkedList<T> //making this generic
         Node newNode = new Node(data);
         newNode.next = head;
         head = newNode;
+        size++;
     }
     
     public T Find(T target) //finding value
@@ -34,6 +36,49 @@ public class LinkedList<T> //making this generic
             current = current.next; //go til the end
         }
         return null; //couldn't find it, returning null
+    }
+    
+    public T FindWithIndex(int index)
+    {
+        if(index < 0 || index >= size)
+        {
+            throw new IndexOutOfBoundsException("Index out of range");
+        }
+        
+        Node current = head;
+        int count = 0;
+        
+        while(current != null)
+        {
+            if(count == index)
+                return (T) current.data;
+            current = current.next;
+            count++;
+        }
+        
+        return null;
+    }
+    
+    public T FindWithName(String name) //Exclusive for FilmJ and ActorJ class
+    {
+        Node current = head;
+        
+        while(current != null)
+        {
+            if(current.data instanceof FilmJ)
+            {
+                FilmJ Film = (FilmJ) current.data;
+                if(Film.getName().equalsIgnoreCase(name))
+                    return (T) current.data;
+            }
+            else if(current.data instanceof ActorJ)
+            {
+                ActorJ actor = (ActorJ) current.data;
+                if(actor.getName().equalsIgnoreCase(name))
+                    return (T) current.data;
+            }
+        }
+        return null;
     }
     
     public boolean ContainsKey(T data) //checking if we have the key
@@ -54,6 +99,7 @@ public class LinkedList<T> //making this generic
                     head = current.next; //removing the head
                 else
                     prev.next = current.next; //bypassing the node
+                size--;
                 return true;
             }
             prev = current;
@@ -65,10 +111,12 @@ public class LinkedList<T> //making this generic
     public void printList()
     {
         Node current = head;
+        int listNumber = 0;
         while(current != null)
         {
-            System.out.print(current.data + "->");
+            System.out.println(listNumber + ": " +current.data);
             current = current.next;
+            listNumber++;
         }
         System.out.println("Null");
     }
@@ -81,5 +129,15 @@ public class LinkedList<T> //making this generic
     public void setHead(Node<T> newHead)
     {
         this.head = newHead;
+    }
+    
+    public int getSize()
+    {
+        return size;
+    }
+    
+    public void setSize(int size)
+    {
+        this.size = size;
     }
 }

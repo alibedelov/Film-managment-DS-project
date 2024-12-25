@@ -49,6 +49,11 @@ public class ActorJ implements Comparable<ActorJ> {
     public void setActorId(int actorId) {
         this.actorId = actorId;
     }
+    
+    public void getFilmsParticipated() //added by Ali Badalov 220315106
+    {
+        filmsParticipated.display();
+    }
 
     @Override
     public String toString() {

@@ -10,13 +10,15 @@ package com.dsproj.filmmanagmentdsproject;
  */
 public class ViewerFeedback {
     private static class Feedback {
+        String filmName;
         String review;
         int rating;
 
-        public Feedback(String review, int rating) {
+        public Feedback(FilmJ Film, String review, int rating) {
             if (rating < 1 || rating > 10) {
                 throw new IllegalArgumentException("Rate between 1 and 10");
             }
+            this.filmName = Film.getName();
             this.review = review;
             this.rating = rating;
         }
@@ -42,7 +44,7 @@ public class ViewerFeedback {
         if (rating < 1 || rating > 10) {
             throw new IllegalArgumentException("Rating must be between 1 and 10.");
         }
-        feedbackList.add(new Feedback(review, rating));
+        feedbackList.add(new Feedback(film, review, rating));
         totalRating += rating;
         feedbackCount++;
 

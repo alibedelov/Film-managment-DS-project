@@ -109,4 +109,9 @@ public class LinkedListJ<T> {
             this.next = null; // Initialize the next reference as null
         }
     }
+    
+    public boolean isEmpty()
+    {
+        return size == 0;
+    }
 }

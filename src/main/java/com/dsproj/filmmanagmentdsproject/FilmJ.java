@@ -86,6 +86,11 @@ public class FilmJ implements Comparable<FilmJ> {
     public void updatePopularity(double averageRating) {
         this.popularity = averageRating;
     }
+    
+    public void getActors() //Added by Ali Badalov 220315106
+    {
+        this.actorList.display();
+    }
 
     // Override compareTo to allow sorting by film name
     @Override
