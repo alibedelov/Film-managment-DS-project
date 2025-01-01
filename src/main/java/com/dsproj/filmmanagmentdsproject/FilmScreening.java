@@ -12,9 +12,13 @@ package com.dsproj.filmmanagmentdsproject;
 public class FilmScreening {
     private int viewerCount;
     private double ticketPrice;
-
-    // Constructor to initialize the screening details
     public FilmScreening(int viewerCount, double ticketPrice) {
+        if (viewerCount < 0) {
+            throw new IllegalArgumentException("Viewer count can't be a negative number");
+        }
+        if (ticketPrice <= 0) {
+            throw new IllegalArgumentException("Ticket price must be greater than zero");
+        }
         this.viewerCount = viewerCount;
         this.ticketPrice = ticketPrice;
     }
@@ -26,7 +30,17 @@ public class FilmScreening {
     public double getTicketPrice() {
         return ticketPrice;
     }
-}
 
-    
-   
+    public double calculateRevenue() {
+        return viewerCount * ticketPrice;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Film Screening Details:\n" +
+                "Viewer Count: %d\n" +
+                "Ticket Price: $%.2f\n" +
+                "Total Revenue: $%.2f",
+                viewerCount, ticketPrice, calculateRevenue());
+    }
+}
