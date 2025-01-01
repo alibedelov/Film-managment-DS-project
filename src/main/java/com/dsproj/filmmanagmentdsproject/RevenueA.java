@@ -10,52 +10,39 @@ package com.dsproj.filmmanagmentdsproject;
  */
 public class RevenueA {
     private LinkedListJ<Double> revenueStack; 
-    private LinkedListJ<FilmScreening> screeningQueue;
+    private final LinkedListJ<FilmScreening> screeningQueue;
 
     public RevenueA() {
         this.revenueStack = new LinkedListJ<>();
         this.screeningQueue = new LinkedListJ<>();
     }
-
-    // Add a new film screening to the queue
     public void enqueueScreening(FilmScreening screening) {
-        screeningQueue.add(screening);  
+        screeningQueue.add(screening);
     }
-
-    // Process the screenings and calculate revenue
     public void processScreenings() {
         while (!screeningQueue.isEmpty()) {
-            FilmScreening screening = screeningQueue.get(0);  
-            double revenue = screening.getViewerCount() * screening.getTicketPrice(); 
-            addScreening(revenue); 
-            screeningQueue.remove(screening);  
+            FilmScreening screening = screeningQueue.get(0);
+            double revenue = screening.calculateRevenue(); // Calculate revenue using FilmScreening's method
+            addScreening(revenue);
+            screeningQueue.remove(screening);
         }
     }
-
-    // Add revenue to the stack
     public void addScreening(double revenue) {
-        revenueStack.add(revenue);  
+        revenueStack.add(revenue);
     }
-
-    // Display all revenue history
     public void displayRevenueHistory() {
         System.out.println("Revenue History:");
         revenueStack.display();
     }
-
-    // Calculate total revenue from all screenings
     public double getTotalRevenue() {
         double totalRevenue = 0.0;
         for (int i = 0; i < revenueStack.size(); i++) {
-            totalRevenue += revenueStack.get(i);  // Sum all revenues
+            totalRevenue += revenueStack.get(i);
         }
         return totalRevenue;
     }
-
-    // Clear revenue history
     public void clearRevenueHistory() {
         revenueStack = new LinkedListJ<>();
         System.out.println("Revenue history has been cleared");
     }
 }
-
