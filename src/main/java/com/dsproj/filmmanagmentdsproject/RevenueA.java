@@ -16,9 +16,11 @@ public class RevenueA {
         this.revenueStack = new LinkedListJ<>();
         this.screeningQueue = new LinkedListJ<>();
     }
+
     public void enqueueScreening(FilmScreening screening) {
         screeningQueue.add(screening);
     }
+
     public void processScreenings() {
         while (!screeningQueue.isEmpty()) {
             FilmScreening screening = screeningQueue.get(0);
@@ -27,13 +29,16 @@ public class RevenueA {
             screeningQueue.remove(screening);
         }
     }
+
     public void addScreening(double revenue) {
         revenueStack.add(revenue);
     }
+
     public void displayRevenueHistory() {
         System.out.println("Revenue History:");
         revenueStack.display();
     }
+
     public double getTotalRevenue() {
         double totalRevenue = 0.0;
         for (int i = 0; i < revenueStack.size(); i++) {
@@ -41,8 +46,19 @@ public class RevenueA {
         }
         return totalRevenue;
     }
+
     public void clearRevenueHistory() {
         revenueStack = new LinkedListJ<>();
         System.out.println("Revenue history has been cleared");
+    }
+
+    // Method for retrieving the last n revenues
+    public LinkedListJ<Double> getLastNRevenues(int n) {
+        LinkedListJ<Double> lastNRevenues = new LinkedListJ<>();
+        int startIndex = Math.max(0, revenueStack.size() - n); // Start from the last n items
+        for (int i = startIndex; i < revenueStack.size(); i++) {
+            lastNRevenues.add(revenueStack.get(i));
+        }
+        return lastNRevenues;
     }
 }
