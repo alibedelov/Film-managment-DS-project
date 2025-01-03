@@ -14,7 +14,7 @@ public class ViewerFeedback {
         String review;
         int rating;
 
-        public Feedback(FilmJ Film, String review, int rating) {
+     public Feedback(FilmJ Film, String review, int rating) {
             if (rating < 1 || rating > 10) {
                 throw new IllegalArgumentException("Rate between 1 and 10");
             }
@@ -39,7 +39,7 @@ public class ViewerFeedback {
         this.feedbackCount = 0;
     }
 
-    // Method to add feedback and update film popularity
+      // Method to add feedback and update film popularity and rank
     public void addFeedback(FilmJ film, String review, int rating) {
         if (rating < 1 || rating > 10) {
             throw new IllegalArgumentException("Rating must be between 1 and 10");
@@ -48,12 +48,12 @@ public class ViewerFeedback {
         totalRating += rating;
         feedbackCount++;
 
-        // Calculate average rating and update the film's popularity
         double averageRating = (double) totalRating / feedbackCount;
-        film.updatePopularity(averageRating);  // Update the film's popularity based on average rating
+        film.updatePopularity(averageRating);
+        film.updateRank(); // Update rank after adding feedback
     }
 
-    // Method to display all feedback
+      // Method to display all feedback
     public void displayFeedback() {
         if (feedbackList.isEmpty()) {
             System.out.println("No feedback available");
