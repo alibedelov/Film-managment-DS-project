@@ -14,8 +14,8 @@ public class Main {
     {
         
         Scanner input = new Scanner(System.in);
-        int id = 5;
-        int actorId = 18;
+        int id = 18;
+        int actorId = 53;
         boolean exit = false;
         LinkedList<FilmJ> FilmList = new LinkedList<FilmJ>();
         LinkedList<ActorJ> ActorList = new LinkedList<ActorJ>();;
@@ -214,6 +214,11 @@ public class Main {
         OrlandoBloom.addFilm(Pirates);
         ActorJ KeiraKnightley = new ActorJ("Keira Knightley", 52);
         KeiraKnightley.addFilm(Pirates);
+        
+        for(int i = 0; i < FilmList.getSize(); i++)
+        {
+            popularityHeap.insert(FilmList.FindWithIndex(i));
+        }
         
         while(!exit)
         {

@@ -25,7 +25,7 @@ public class ViewerFeedback {
 
         @Override
         public String toString() {
-            return "Rating: " + rating + "/10, Review: " + review;
+            return "Film : " + filmName + " Rating: " + rating + "/10, Review: " + review;
         }
     }
 
