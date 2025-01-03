@@ -28,7 +28,7 @@ public class ViewerFeedback {
             return "Film : " + filmName + " Rating: " + rating + "/10, Review: " + review;
         }
     }
-
+    
     private final LinkedListJ<Feedback> feedbackList;
     private int totalRating;
     private int feedbackCount;
@@ -39,7 +39,7 @@ public class ViewerFeedback {
         this.feedbackCount = 0;
     }
 
-      // Method to add feedback and update film popularity and rank
+     // Method to add feedback and update film popularity and rank
     public void addFeedback(FilmJ film, String review, int rating) {
         if (rating < 1 || rating > 10) {
             throw new IllegalArgumentException("Rating must be between 1 and 10");
@@ -49,11 +49,18 @@ public class ViewerFeedback {
         feedbackCount++;
 
         double averageRating = (double) totalRating / feedbackCount;
-        film.updatePopularity(averageRating);
-        film.updateRank(); // Update rank after adding feedback
+        film.updatePopularity(averageRating); // Update popularity based on feedback
+
+        // Calculate popularity from revenue
+        double popularityFromRevenue = film.getTotalRevenue() / 1000000.0; 
+        double combinedPopularity = (averageRating + popularityFromRevenue) / 2; 
+        film.updatePopularity(combinedPopularity);
+
+        // Update rank after adding feedback and recalculating popularity
+        film.updateRank();
     }
 
-      // Method to display all feedback
+    // Method to display all feedback
     public void displayFeedback() {
         if (feedbackList.isEmpty()) {
             System.out.println("No feedback available");
