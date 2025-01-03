@@ -225,7 +225,7 @@ public class Main {
             System.out.println("5. Simulate Revenue");
             System.out.println("6. Retrieve Revenue History");
             System.out.println("7. Display Popularity Rankings");
-            System.out.println("8. Movie recomendations");
+            System.out.println("8. Movie recommendations");
             System.out.println("9. Viewer feedback");
             System.out.println("10. Exit");
             System.out.print("Enter your choice: ");
