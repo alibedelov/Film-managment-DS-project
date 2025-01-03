@@ -42,7 +42,7 @@ public class ViewerFeedback {
     // Method to add feedback and update film popularity
     public void addFeedback(FilmJ film, String review, int rating) {
         if (rating < 1 || rating > 10) {
-            throw new IllegalArgumentException("Rating must be between 1 and 10.");
+            throw new IllegalArgumentException("Rating must be between 1 and 10");
         }
         feedbackList.add(new Feedback(film, review, rating));
         totalRating += rating;
