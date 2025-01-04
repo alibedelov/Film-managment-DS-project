@@ -8,12 +8,12 @@ public class FilmJ implements Comparable<FilmJ> {
     private double totalRevenue; 
     private final LinkedListJ<ActorJ> actorList; 
     private double popularity; 
-    double averageRating;
+    private double averageRating;
     static final double Revenue_Weight = 0.7f;
     static final double Feedback_Weight = 0.3f;
-    double minRevenue = 100000000f;
-    double maxRevenue = 5000000000f;
-    int feedbackCount = 0;
+    private final double minRevenue = 100000000f;
+    private final double maxRevenue = 5000000000f;
+    private int feedbackCount = 0;
 
     // Constructor to initialize the film details
     public FilmJ(String name, int filmId, String genre, int releaseYear, double totalRevenue) {
@@ -44,12 +44,12 @@ public class FilmJ implements Comparable<FilmJ> {
         }
     }
 
-     // Checks if an actor is part of the film
+    // Checks if an actor is part of the film
     public boolean hasActor(ActorJ actor) {
         return actorList.contains(actor);
     }
 
-     // Getter and setter methods
+    // Getter and setter methods
     public String getName() {
         return name;
     }
@@ -98,39 +98,40 @@ public class FilmJ implements Comparable<FilmJ> {
         this.popularity = popularity;
     }
     
-    public void setAverageRating(double averageRating)
-    {
+    public void setAverageRating(double averageRating) {
         this.averageRating = averageRating;
     }
     
-    public double getAverageRating()
-    {
+    public double getAverageRating() {
         return this.averageRating;
     }
     
-    public void increaseFeedbackCount()
-    {
+    public void increaseFeedbackCount() {
         feedbackCount++;
     }
     
-    public int getFeedbackCount()
-    {
+    public int getFeedbackCount() {
         return feedbackCount;
     }
 
     // Method to update popularity based on average rating
-    public void updatePopularity() 
-    {
+    public void updatePopularity() {
         double normalizedRevenue = (totalRevenue - minRevenue) / (maxRevenue - minRevenue);
         double normalizedFeedback = (averageRating - 1) / (10 - 1);
         double temp = (Revenue_Weight * normalizedRevenue) + (Feedback_Weight * normalizedFeedback);
         this.popularity = Math.round(temp * 100.0) / 100.0;
     }
 
+    // Method to add revenue to the film and update popularity
+    public void addRevenue(double revenue) {
+        this.totalRevenue += revenue; // Add the revenue to the total revenue
+        updatePopularity();          // Update the popularity based on the new revenue
+    }
+
     public void getActors() {
         this.actorList.display();
     }
-    
+
     @Override
     public int compareTo(FilmJ otherFilm) {
         return this.name.compareTo(otherFilm.name); // Compare by name for sorting
@@ -139,6 +140,7 @@ public class FilmJ implements Comparable<FilmJ> {
     @Override
     public String toString() {
         return "Film Name: " + name + ", ID: " + filmId + ", Genre: " + genre + 
-               ", Release Year: " + releaseYear + ", Revenue: " + totalRevenue + ", Popularity: " + popularity;
+               ", Release Year: " + releaseYear + ", Revenue: " + totalRevenue + 
+               ", Popularity: " + popularity;
     }
 }
