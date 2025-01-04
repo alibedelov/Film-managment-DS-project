@@ -39,10 +39,10 @@ public class RevenueA {
             double revenue = screening.calculateRevenue();
             FilmJ film = getFilmById(screening.getFilm().getFilmId());
             if (film != null) {
-                film.addRevenue(revenue); 
+                film.addRevenue(revenue);  // Add revenue to the film's total revenue
             }
-            addScreening(revenue);
-            screeningQueue.remove(screening);
+            addScreening(revenue);  //Add the revenue to the revenue history
+            screeningQueue.remove(screening);  // Remove the processed screening
         }
     }
 
@@ -58,13 +58,13 @@ public class RevenueA {
     public double getTotalRevenue() {
         double totalRevenue = 0.0;
         for (int i = 0; i < revenueStack.size(); i++) {
-            totalRevenue += revenueStack.get(i);
+            totalRevenue += revenueStack.get(i);  //Sum up all the revenue in the stack
         }
         return totalRevenue;
     }
 
     public void clearRevenueHistory() {
-        revenueStack.clear();
+        revenueStack.clear();  // Clear the revenue history
         System.out.println("Revenue history has been cleared");
     }
 
@@ -72,7 +72,7 @@ public class RevenueA {
         LinkedListJ<Double> lastNRevenues = new LinkedListJ<>();
         int startIndex = Math.max(0, revenueStack.size() - n);
         for (int i = startIndex; i < revenueStack.size(); i++) {
-            lastNRevenues.add(revenueStack.get(i));
+            lastNRevenues.add(revenueStack.get(i));  //Get the last N revenues
         }
         return lastNRevenues;
     }
