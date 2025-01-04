@@ -9,9 +9,9 @@ package com.dsproj.filmmanagmentdsproject;
  * @author Fatma Alsaghir 220315105
  */
 public class RevenueA {
-    private LinkedListJ<Double> revenueStack;
+    private final LinkedListJ<Double> revenueStack;
     private final LinkedListJ<FilmScreening> screeningQueue;
-    private LinkedList<FilmJ> allFilms;
+    private final LinkedList<FilmJ> allFilms;
 
     public RevenueA(LinkedList<FilmJ> allFilms) {
         this.revenueStack = new LinkedListJ<>();
@@ -19,11 +19,16 @@ public class RevenueA {
         this.allFilms = allFilms;
     }
 
-    private FilmJ getFilmForScreening(FilmScreening screening) {
-        int filmId = screening.getFilm().getFilmId(); 
-        return allFilms.FindWithIndex(filmId);
+    private FilmJ getFilmById(int filmId) {
+        for (int i = 0; i < allFilms.size(); i++) {
+            FilmJ film = allFilms.get(i);
+            if (film.getFilmId() == filmId) {
+                return film;
+            }
+        }
+        return null; // returns null if no film matches the ID
     }
-    
+
     public void enqueueScreening(FilmScreening screening) {
         screeningQueue.add(screening);
     }
@@ -31,11 +36,10 @@ public class RevenueA {
     public void processScreenings() {
         while (!screeningQueue.isEmpty()) {
             FilmScreening screening = screeningQueue.get(0);
-            double revenue = screening.calculateRevenue(); 
-            FilmJ film = getFilmForScreening(screening);  
+            double revenue = screening.calculateRevenue();
+            FilmJ film = getFilmById(screening.getFilm().getFilmId());
             if (film != null) {
-                film.setTotalRevenue(film.getTotalRevenue() + revenue);
-                film.updatePopularity();
+                film.addRevenue(revenue); 
             }
             addScreening(revenue);
             screeningQueue.remove(screening);
@@ -60,13 +64,13 @@ public class RevenueA {
     }
 
     public void clearRevenueHistory() {
-        revenueStack = new LinkedListJ<>();
+        revenueStack.clear();
         System.out.println("Revenue history has been cleared");
     }
 
     public LinkedListJ<Double> getLastNRevenues(int n) {
         LinkedListJ<Double> lastNRevenues = new LinkedListJ<>();
-        int startIndex = Math.max(0, revenueStack.size() - n); 
+        int startIndex = Math.max(0, revenueStack.size() - n);
         for (int i = startIndex; i < revenueStack.size(); i++) {
             lastNRevenues.add(revenueStack.get(i));
         }
