@@ -8,18 +8,24 @@ public class FilmJ implements Comparable<FilmJ> {
     private double totalRevenue; 
     private final LinkedListJ<ActorJ> actorList; 
     private double popularity; 
-    private int rank; 
+    double averageRating;
+    static final double Revenue_Weight = 0.7f;
+    static final double Feedback_Weight = 0.3f;
+    double minRevenue = 100000000f;
+    double maxRevenue = 5000000000f;
+    int feedbackCount = 0;
 
     // Constructor to initialize the film details
-    public FilmJ(String name, int filmId, String genre, int releaseYear) {
+    public FilmJ(String name, int filmId, String genre, int releaseYear, double totalRevenue) {
         this.name = name;
         this.filmId = filmId;
         this.genre = genre;
         this.releaseYear = releaseYear;
-        this.totalRevenue = 0.0; 
+        this.totalRevenue = totalRevenue; 
         this.actorList = new LinkedListJ<>(); 
         this.popularity = 0.0; 
-        this.rank = 0;
+        this.averageRating = 0f;
+        updatePopularity();
     }
 
     // Adds an actor to the film's actor list
@@ -91,25 +97,34 @@ public class FilmJ implements Comparable<FilmJ> {
     public void setPopularity(double popularity) {
         this.popularity = popularity;
     }
-
-    public int getRank() {
-        return rank;
+    
+    public void setAverageRating(double averageRating)
+    {
+        this.averageRating = averageRating;
     }
-
-    public void setRank(int rank) {
-        this.rank = rank;
+    
+    public double getAverageRating()
+    {
+        return this.averageRating;
+    }
+    
+    public void increaseFeedbackCount()
+    {
+        feedbackCount++;
+    }
+    
+    public int getFeedbackCount()
+    {
+        return feedbackCount;
     }
 
     // Method to update popularity based on average rating
-    public void updatePopularity(double averageRating) {
-        this.popularity = averageRating;
-    }
-
-     // Method to update rank based on both revenue and popularity
-    public void updateRank() {
-        double revenueScore = this.totalRevenue * 0.7;
-        double popularityScore = this.popularity * 0.3;
-        this.rank = (int) (revenueScore + popularityScore);
+    public void updatePopularity() 
+    {
+        double normalizedRevenue = (totalRevenue - minRevenue) / (maxRevenue - minRevenue);
+        double normalizedFeedback = (averageRating - 1) / (10 - 1);
+        double temp = (Revenue_Weight * normalizedRevenue) + (Feedback_Weight * normalizedFeedback);
+        this.popularity = Math.round(temp * 100.0) / 100.0;
     }
 
     public void getActors() {
@@ -124,6 +139,6 @@ public class FilmJ implements Comparable<FilmJ> {
     @Override
     public String toString() {
         return "Film Name: " + name + ", ID: " + filmId + ", Genre: " + genre + 
-               ", Release Year: " + releaseYear + ", Revenue: " + totalRevenue + ", Popularity: " + popularity + ", Rank: " + rank;
+               ", Release Year: " + releaseYear + ", Revenue: " + totalRevenue + ", Popularity: " + popularity;
     }
 }

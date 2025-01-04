@@ -31,12 +31,10 @@ public class ViewerFeedback {
 
     private final LinkedListJ<Feedback> feedbackList;
     private int totalRating;
-    private int feedbackCount;
 
     public ViewerFeedback() {
         this.feedbackList = new LinkedListJ<>();
         this.totalRating = 0;
-        this.feedbackCount = 0;
     }
 
     // Method to add feedback and update film popularity and rank
@@ -46,16 +44,13 @@ public class ViewerFeedback {
         }
         feedbackList.add(new Feedback(film, review, rating));
         totalRating += rating;
-        feedbackCount++;
-        double averageRating = (double) totalRating / feedbackCount;
+        film.increaseFeedbackCount();
+        double averageRating = (double) totalRating / film.getFeedbackCount();
         
         // Calculate combined popularity
         double popularityFromRating = averageRating;
-        double popularityFromRevenue = film.getTotalRevenue() / 1000000.0; 
-        double combinedPopularity = (popularityFromRating + popularityFromRevenue) / 2; 
-
-        film.updatePopularity(combinedPopularity);
-        film.updateRank(); 
+        film.setAverageRating(averageRating);
+        film.updatePopularity();
     }
 
     // Method to display all feedback

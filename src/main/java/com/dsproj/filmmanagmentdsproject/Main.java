@@ -19,7 +19,7 @@ public class Main {
         boolean exit = false;
         LinkedList<FilmJ> FilmList = new LinkedList<FilmJ>();
         LinkedList<ActorJ> ActorList = new LinkedList<ActorJ>();;
-        RevenueA revenueManager = new RevenueA();
+        
         Heap popularityHeap = new Heap(100);
         Recommendations recommendations = new Recommendations(50);
         ViewerFeedback viewerFeedback = new ViewerFeedback();
@@ -27,7 +27,7 @@ public class Main {
         //Animation genre
         
         //Brave
-        FilmJ Brave = new FilmJ("Brave", 0, "Animation", 2012);
+        FilmJ Brave = new FilmJ("Brave", 0, "Animation", 2012, 554000000f);
         FilmList.Add(Brave);
         ActorJ KellyMacdonald = new ActorJ("Kelly Macdonald", 0);
         KellyMacdonald.addFilm(Brave);
@@ -37,7 +37,7 @@ public class Main {
         EmmaThompson.addFilm(Brave);
         
         //Toy Story 3
-        FilmJ ToyStory3 = new FilmJ("Toy Story 3", 1, "Animation", 2010);
+        FilmJ ToyStory3 = new FilmJ("Toy Story 3", 1, "Animation", 2010, 1068000000f);
         FilmList.Add(ToyStory3);
         ActorJ TomHanks = new ActorJ("Tom Hanks", 3);
         TomHanks.addFilm(ToyStory3);
@@ -47,7 +47,7 @@ public class Main {
         JoanCusack.addFilm(ToyStory3);
         
         //Frozen
-        FilmJ Frozen = new FilmJ("Frozen", 2, "Animation", 2013);
+        FilmJ Frozen = new FilmJ("Frozen", 2, "Animation", 2013, 1271870000f);
         FilmList.Add(Frozen);
         ActorJ KristenBell = new ActorJ("KristenBell", 6);
         KristenBell.addFilm(Frozen);
@@ -59,7 +59,7 @@ public class Main {
         //Sci-Fi
         
         //Interstellar
-        FilmJ Interstellar = new FilmJ("Interstellar", 3, "Sci-Fi", 2014);
+        FilmJ Interstellar = new FilmJ("Interstellar", 3, "Sci-Fi", 2014, 643650000f);
         FilmList.Add(Interstellar);
         ActorJ MatthewMcConaughey = new ActorJ("Matthew McConaughey", 9);
         MatthewMcConaughey.addFilm(Interstellar);
@@ -69,7 +69,7 @@ public class Main {
         JessicaChastain.addFilm(Interstellar);
         
         //Avatar
-        FilmJ Avatar = new FilmJ("Avatar", 4, "Sci-Fi", 2009);
+        FilmJ Avatar = new FilmJ("Avatar", 4, "Sci-Fi", 2009, 2923700000f);
         FilmList.Add(Avatar);
         ActorJ SamWorthington = new ActorJ("Sam Worthington", 12);
         SamWorthington.addFilm(Avatar);
@@ -79,7 +79,7 @@ public class Main {
         SigourneyWeaver.addFilm(Avatar);
         
         //Star Wars: The Force Awakens
-        FilmJ StarWars = new FilmJ("Star Wars: The Force Awakens", 5, "Sci-Fi", 2015);
+        FilmJ StarWars = new FilmJ("Star Wars: The Force Awakens", 5, "Sci-Fi", 2015, 2056045800f);
         FilmList.Add(StarWars);
         ActorJ DaisyRidley = new ActorJ("Daisy Ridley", 15);
         DaisyRidley.addFilm(StarWars);
@@ -91,7 +91,7 @@ public class Main {
         //Drama
         
         //The Blind Side
-        FilmJ TheBlindSide = new FilmJ("The Blind Side", 6, "Drama", 2009);
+        FilmJ TheBlindSide = new FilmJ("The Blind Side", 6, "Drama", 2009, 305705700f);
         FilmList.Add(TheBlindSide);
         ActorJ SandraBullock = new ActorJ("Sandra Bullock", 18);
         SandraBullock.addFilm(TheBlindSide);
@@ -101,7 +101,7 @@ public class Main {
         TimMcGraw.addFilm(TheBlindSide);
         
         //Forrest Gump
-        FilmJ ForrestGump = new FilmJ("Forrest Gump", 7, "Drama", 1994);
+        FilmJ ForrestGump = new FilmJ("Forrest Gump", 7, "Drama", 1994, 679835100f);
         FilmList.Add(ForrestGump);
         TomHanks.addFilm(ForrestGump);
         ActorJ RobinWright = new ActorJ("Robin Wright", 21);
@@ -110,7 +110,7 @@ public class Main {
         GarySinise.addFilm(ForrestGump);
         
         //A Beautiful Mind
-        FilmJ ABeautifulMind = new FilmJ("A Beautiful Mind", 8, "Drama", 2001);
+        FilmJ ABeautifulMind = new FilmJ("A Beautiful Mind", 8, "Drama", 2001, 317668000f);
         FilmList.Add(ABeautifulMind);
         ActorJ RusselCrowe = new ActorJ("Russel Crowe", 23);
         RusselCrowe.addFilm(ABeautifulMind);
@@ -122,7 +122,7 @@ public class Main {
         //Action
         
         //Spider-Man 3
-        FilmJ SpiderMan3 = new FilmJ("Spider-Man 3", 9, "Action", 2007);
+        FilmJ SpiderMan3 = new FilmJ("Spider-Man 3", 9, "Action", 2007, 895937268f);
         FilmList.Add(SpiderMan3);
         ActorJ TobeyMaguire = new ActorJ("Tobey Maguire", 26);
         TobeyMaguire.addFilm(SpiderMan3);
@@ -132,7 +132,7 @@ public class Main {
         TopherGrace.addFilm(SpiderMan3);
         
         //The Dark Knight
-        FilmJ TheDarkKnight = new FilmJ("The Dark Knight", 10, "Action", 2008);
+        FilmJ TheDarkKnight = new FilmJ("The Dark Knight", 10, "Action", 2008, 1007695700f);
         FilmList.Add(TheDarkKnight);
         ActorJ ChristianBale = new ActorJ("Christian Bale", 29);
         ChristianBale.addFilm(TheDarkKnight);
@@ -142,7 +142,7 @@ public class Main {
         AaronEckhart.addFilm(TheDarkKnight);
         
         //Avengers: Endgame
-        FilmJ AvengersEndgame = new FilmJ("Avengers: Endgame", 11, "Action", 2019);
+        FilmJ AvengersEndgame = new FilmJ("Avengers: Endgame", 11, "Action", 2019, 2748240000f);
         FilmList.Add(AvengersEndgame);
         ActorJ RobertDowneyJr = new ActorJ("Robert Downey Jr.", 32);
         RobertDowneyJr.addFilm(AvengersEndgame);
@@ -154,7 +154,7 @@ public class Main {
         //Comedy
         
         //Paddington 2
-        FilmJ Paddington2 = new FilmJ("Paddington 2", 12, "Comedy", 2017);
+        FilmJ Paddington2 = new FilmJ("Paddington 2", 12, "Comedy", 2017, 240960000f);
         FilmList.Add(Paddington2);
         ActorJ BenWhishaw = new ActorJ("Ben Whishaw", 35);
         BenWhishaw.addFilm(Paddington2);
@@ -164,7 +164,7 @@ public class Main {
         SallyHawkins.addFilm(Paddington2);
         
         //The Lego Movie
-        FilmJ TheLegoMovie = new FilmJ("The Lego Movie", 13, "Comedy", 2014);
+        FilmJ TheLegoMovie = new FilmJ("The Lego Movie", 13, "Comedy", 2014, 467570000f);
         FilmList.Add(TheLegoMovie);
         ActorJ ChrisPatt = new ActorJ("Chris Patt", 38);
         ChrisPatt.addFilm(TheLegoMovie);
@@ -174,7 +174,7 @@ public class Main {
         WillFerrell.addFilm(TheLegoMovie);
         
         //Zootopia
-        FilmJ Zootopia = new FilmJ("Zootopia", 14, "Comedy", 2016);
+        FilmJ Zootopia = new FilmJ("Zootopia", 14, "Comedy", 2016, 1025485000f);
         FilmList.Add(Zootopia);
         ActorJ GinniferGoodwin = new ActorJ("GinniferGoodwin", 41);
         GinniferGoodwin.addFilm(Zootopia);
@@ -186,7 +186,7 @@ public class Main {
         //Adventure
         
         //The Secret Life of Walter Mitty
-        FilmJ WalterMitty = new FilmJ("The Secret Life of Walter Mitty", 15, "Adventure", 2013);
+        FilmJ WalterMitty = new FilmJ("The Secret Life of Walter Mitty", 15, "Adventure", 2013, 187860000f);
         FilmList.Add(WalterMitty);
         ActorJ BenStiller = new ActorJ("Ben Stiller", 44);
         BenStiller.addFilm(WalterMitty);
@@ -196,7 +196,7 @@ public class Main {
         SeanPenn.addFilm(WalterMitty);
         
         //The Hobbit: An Unexpected Journey
-        FilmJ TheHobbit = new FilmJ("The HobbitL An Unexpected Journey", 16, "Adventure", 2012);
+        FilmJ TheHobbit = new FilmJ("The Hobbit: An Unexpected Journey", 16, "Adventure", 2012, 1014938000f);
         FilmList.Add(TheHobbit);
         ActorJ MartinFreeman = new ActorJ("Martin Freeman", 47);
         MartinFreeman.addFilm(TheHobbit);
@@ -206,7 +206,7 @@ public class Main {
         RichardArmitage.addFilm(TheHobbit);
         
         //Pirates of the Caribbean: The Curse of the Black Pearl
-        FilmJ Pirates = new FilmJ("Pirates of the Caribbean: The Curse of the Black Pearl", 17, "Adventure", 2003);
+        FilmJ Pirates = new FilmJ("Pirates of the Caribbean: The Curse of the Black Pearl", 17, "Adventure", 2003, 654310800f);
         FilmList.Add(Pirates);
         ActorJ JohnnyDepp = new ActorJ("Johhny Depp", 50);
         JohnnyDepp.addFilm(Pirates);
@@ -215,10 +215,7 @@ public class Main {
         ActorJ KeiraKnightley = new ActorJ("Keira Knightley", 52);
         KeiraKnightley.addFilm(Pirates);
         
-        for(int i = 0; i < FilmList.getSize(); i++)
-        {
-            popularityHeap.insert(FilmList.FindWithIndex(i));
-        }
+        RevenueA revenueManager = new RevenueA(FilmList);
         
         while(!exit)
         {
@@ -246,7 +243,9 @@ public class Main {
                     String genre = input.nextLine();
                     System.out.print("\nEnter release year of the film : ");
                     int releaseYear = Integer.parseInt(input.nextLine());
-                    FilmJ film = new FilmJ(filmName, id, genre, releaseYear);
+                    System.out.print("\nEnter total revenue of the film : ");
+                    double totalRevenue = Double.parseDouble(input.nextLine());
+                    FilmJ film = new FilmJ(filmName, id, genre, releaseYear, totalRevenue);
                     FilmList.Add(film);
                     id++;
                     break;
@@ -418,15 +417,31 @@ public class Main {
                         switch(revenueChoice)
                         {
                             case 1:
-                                System.out.print("Enter viewer count : ");
-                                int viewerCount = Integer.parseInt(input.nextLine());
-                                System.out.print("Enter ticket prices : ");
-                                double ticketPrice = Double.parseDouble(input.nextLine());
-                                
-                                FilmScreening screening = new FilmScreening(viewerCount, ticketPrice);
-                                revenueManager.enqueueScreening(screening);
-                                System.out.println("Film screening has been successfully added to queue");
+                                System.out.println("The list of films : ");
+                                FilmList.printList();
+                                System.out.print("Select the film you want to update : ");
+                                int FilmindexChoice = Integer.parseInt(input.nextLine());
+                                if(FilmindexChoice >= id || FilmindexChoice < 0)
+                                {
+                                    System.out.println("Error: Wrong index choice.");
+                                    break;
+                                }
+                                else
+                                {
+                                    
+                                    FilmJ filmSelected = FilmList.FindWithIndex(FilmindexChoice);
+                                            
+                                    System.out.print("Enter viewer count : ");
+                                    int viewerCount = Integer.parseInt(input.nextLine());
+                                    System.out.print("Enter ticket prices : ");
+                                    double ticketPrice = Double.parseDouble(input.nextLine());
+
+                                    FilmScreening screening = new FilmScreening(filmSelected, viewerCount, ticketPrice);
+                                    revenueManager.enqueueScreening(screening);
+                                    System.out.println("Film screening has been successfully added to queue");
+                                }
                                 break;
+                                
                             case 2:
                                 System.out.println("Processing all screenings");
                                 revenueManager.processScreenings();
@@ -456,6 +471,10 @@ public class Main {
                     System.out.println("The revenue history : ");
                     revenueManager.displayRevenueHistory();
                 case 7:
+                    for(int i = 0; i < FilmList.getSize(); i++)
+                    {
+                        popularityHeap.insert(FilmList.FindWithIndex(i));
+                    }
                     if(popularityHeap.size == 0)
                         System.out.println("No films available for ranking");
                     else
@@ -472,12 +491,16 @@ public class Main {
                         while(tempHeap.size > 0)
                         {
                             FilmJ topFilm = tempHeap.removeTop();
+                            String totRevenue = String.format("%.0f", topFilm.getTotalRevenue());
                             System.out.println(rank + ". " + topFilm.getName()
-                            + " (Revenue : $ " + topFilm.getTotalRevenue() + 
-                                    ", Release year : " + topFilm.getReleaseYear());
+                            + " (Revenue : $ " + totRevenue + 
+                                    ", Release year : " + topFilm.getReleaseYear() + 
+                                    " Popularity score : " + topFilm.getPopularity() + ")");
                             rank++;
                         }
                     }
+                    while(popularityHeap.size > 0)
+                        popularityHeap.removeTop();
                     break;
                 case 8:
                     System.out.println("Movie recommendations options : ");

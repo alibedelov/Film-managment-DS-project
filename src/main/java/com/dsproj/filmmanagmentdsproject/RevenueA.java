@@ -11,22 +11,17 @@ package com.dsproj.filmmanagmentdsproject;
 public class RevenueA {
     private LinkedListJ<Double> revenueStack;
     private final LinkedListJ<FilmScreening> screeningQueue;
-    private final LinkedListJ<FilmJ> allFilms;
+    private LinkedList<FilmJ> allFilms;
 
-    public RevenueA(LinkedListJ<FilmJ> allFilms) {
+    public RevenueA(LinkedList<FilmJ> allFilms) {
         this.revenueStack = new LinkedListJ<>();
         this.screeningQueue = new LinkedListJ<>();
         this.allFilms = allFilms;
     }
 
     private FilmJ getFilmForScreening(FilmScreening screening) {
-        int filmId = screening.getFilmId(); 
-        for (FilmJ film : allFilms) {
-            if (film.getFilmId() == filmId) {
-                return film;
-            }
-        }
-        return null;
+        int filmId = screening.getFilm().getFilmId(); 
+        return allFilms.FindWithIndex(filmId);
     }
     
     public void enqueueScreening(FilmScreening screening) {
@@ -39,12 +34,8 @@ public class RevenueA {
             double revenue = screening.calculateRevenue(); 
             FilmJ film = getFilmForScreening(screening);  
             if (film != null) {
-                film.setTotalRevenue(film.getTotalRevenue() + revenue); 
-                
-                // Calculate combined popularity from revenue
-                double popularityFromRevenue = film.getTotalRevenue() / 1000000.0;
-                film.updatePopularity(popularityFromRevenue);
-                film.updateRank(); 
+                film.setTotalRevenue(film.getTotalRevenue() + revenue);
+                film.updatePopularity();
             }
             addScreening(revenue);
             screeningQueue.remove(screening);

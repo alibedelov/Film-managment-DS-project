@@ -109,9 +109,9 @@ public class Heap
     
     private int compareFilms(FilmJ f1, FilmJ f2) //moment of truth. The tie-breaker
     {
-        if (f1.getTotalRevenue() != f2.getTotalRevenue()) 
+        if(f1.getPopularity() != f2.getPopularity())
         {
-            return Double.compare(f1.getTotalRevenue(), f2.getTotalRevenue());
+            return Double.compare(f1.getPopularity(), f2.getPopularity());
         }
         return Integer.compare(f2.getReleaseYear(), f1.getReleaseYear()); // Older films get higher rank in tie
     }
