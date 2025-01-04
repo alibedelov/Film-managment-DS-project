@@ -20,8 +20,8 @@ public class RevenueA {
     }
 
     private FilmJ getFilmById(int filmId) {
-        for (int i = 0; i < allFilms.size(); i++) {
-            FilmJ film = allFilms.get(i);
+        for (int i = 0; i < allFilms.getSize(); i++) {
+            FilmJ film = allFilms.FindWithIndex(i);
             if (film.getFilmId() == filmId) {
                 return film;
             }

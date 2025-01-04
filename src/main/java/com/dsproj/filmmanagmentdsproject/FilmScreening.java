@@ -11,9 +11,9 @@ package com.dsproj.filmmanagmentdsproject;
  */
 public class FilmScreening {
     FilmJ film;
-    private int viewerCount;
+    private long viewerCount;
     private double ticketPrice;
-    public FilmScreening(FilmJ film, int viewerCount, double ticketPrice) {
+    public FilmScreening(FilmJ film, long viewerCount, double ticketPrice) {
         if (viewerCount < 0) {
             throw new IllegalArgumentException("Viewer count can't be a negative number");
         }
@@ -25,7 +25,7 @@ public class FilmScreening {
         this.film = film;
     }
 
-    public int getViewerCount() {
+    public long getViewerCount() {
         return viewerCount;
     }
 

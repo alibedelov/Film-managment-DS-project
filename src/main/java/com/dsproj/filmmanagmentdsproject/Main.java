@@ -18,7 +18,8 @@ public class Main {
         int actorId = 53;
         boolean exit = false;
         LinkedList<FilmJ> FilmList = new LinkedList<FilmJ>();
-        LinkedList<ActorJ> ActorList = new LinkedList<ActorJ>();;
+        LinkedList<ActorJ> ActorList = new LinkedList<ActorJ>();
+        LinkedList<String> GenreList = new LinkedList<String>();
         
         Heap popularityHeap = new Heap(100);
         Recommendations recommendations = new Recommendations(50);
@@ -35,6 +36,9 @@ public class Main {
         BillyConnoly.addFilm(Brave);
         ActorJ EmmaThompson = new ActorJ("Emma Thompson", 2);
         EmmaThompson.addFilm(Brave);
+        ActorList.Add(KellyMacdonald);
+        ActorList.Add(BillyConnoly);
+        ActorList.Add(EmmaThompson);
         
         //Toy Story 3
         FilmJ ToyStory3 = new FilmJ("Toy Story 3", 1, "Animation", 2010, 1068000000f);
@@ -45,6 +49,9 @@ public class Main {
         TimAllen.addFilm(ToyStory3);
         ActorJ JoanCusack = new ActorJ("Joan Cusack", 5);
         JoanCusack.addFilm(ToyStory3);
+        ActorList.Add(TomHanks);
+        ActorList.Add(TimAllen);
+        ActorList.Add(JoanCusack);
         
         //Frozen
         FilmJ Frozen = new FilmJ("Frozen", 2, "Animation", 2013, 1271870000f);
@@ -55,6 +62,14 @@ public class Main {
         IdinaMenzel.addFilm(Frozen);
         ActorJ JoshGad = new ActorJ("Josh Gad", 8);
         JoshGad.addFilm(Frozen);
+        ActorList.Add(KristenBell);
+        ActorList.Add(IdinaMenzel);
+        ActorList.Add(JoshGad);
+        
+        recommendations.addFilmByGenre("Animation", Brave);
+        recommendations.addFilmByGenre("Animation", ToyStory3);
+        recommendations.addFilmByGenre("Animation", Frozen);
+        GenreList.Add("Animation");
         
         //Sci-Fi
         
@@ -67,6 +82,9 @@ public class Main {
         AnneHathaway.addFilm(Interstellar);
         ActorJ JessicaChastain = new ActorJ("Jessica Chastain", 11);
         JessicaChastain.addFilm(Interstellar);
+        ActorList.Add(MatthewMcConaughey);
+        ActorList.Add(AnneHathaway);
+        ActorList.Add(JessicaChastain);
         
         //Avatar
         FilmJ Avatar = new FilmJ("Avatar", 4, "Sci-Fi", 2009, 2923700000f);
@@ -77,6 +95,9 @@ public class Main {
         ZoeSaldana.addFilm(Avatar);
         ActorJ SigourneyWeaver = new ActorJ("Sigourney Weaver", 14);
         SigourneyWeaver.addFilm(Avatar);
+        ActorList.Add(SamWorthington);
+        ActorList.Add(ZoeSaldana);
+        ActorList.Add(SigourneyWeaver);
         
         //Star Wars: The Force Awakens
         FilmJ StarWars = new FilmJ("Star Wars: The Force Awakens", 5, "Sci-Fi", 2015, 2056045800f);
@@ -87,6 +108,14 @@ public class Main {
         JohnBoyega.addFilm(StarWars);
         ActorJ HarrisonFord = new ActorJ("Harrison Ford", 17);
         HarrisonFord.addFilm(StarWars);
+        ActorList.Add(DaisyRidley);
+        ActorList.Add(JohnBoyega);
+        ActorList.Add(HarrisonFord);
+        
+        recommendations.addFilmByGenre("Sci-Fi", Interstellar);
+        recommendations.addFilmByGenre("Sci-Fi", Avatar);
+        recommendations.addFilmByGenre("Sci-Fi", StarWars);
+        GenreList.Add("Sci-Fi");
         
         //Drama
         
@@ -99,6 +128,9 @@ public class Main {
         QuintonAaron.addFilm(TheBlindSide);
         ActorJ TimMcGraw = new ActorJ("Tim McGraw", 20);
         TimMcGraw.addFilm(TheBlindSide);
+        ActorList.Add(SandraBullock);
+        ActorList.Add(QuintonAaron);
+        ActorList.Add(TimMcGraw);
         
         //Forrest Gump
         FilmJ ForrestGump = new FilmJ("Forrest Gump", 7, "Drama", 1994, 679835100f);
@@ -108,6 +140,8 @@ public class Main {
         RobinWright.addFilm(ForrestGump);
         ActorJ GarySinise = new ActorJ("Gary Sinise", 22);
         GarySinise.addFilm(ForrestGump);
+        ActorList.Add(RobinWright);
+        ActorList.Add(GarySinise);
         
         //A Beautiful Mind
         FilmJ ABeautifulMind = new FilmJ("A Beautiful Mind", 8, "Drama", 2001, 317668000f);
@@ -118,6 +152,14 @@ public class Main {
         JenniferConnelly.addFilm(ABeautifulMind);
         ActorJ EdHarris = new ActorJ("Ed Harris", 25);
         EdHarris.addFilm(ABeautifulMind);
+        ActorList.Add(RusselCrowe);
+        ActorList.Add(JenniferConnelly);
+        ActorList.Add(EdHarris);
+        
+        recommendations.addFilmByGenre("Drama", TheBlindSide);
+        recommendations.addFilmByGenre("Drama", ForrestGump);
+        recommendations.addFilmByGenre("Drama", ABeautifulMind);
+        GenreList.Add("Drama");
         
         //Action
         
@@ -130,6 +172,9 @@ public class Main {
         KirstenDunst.addFilm(SpiderMan3);
         ActorJ TopherGrace = new ActorJ("Topher Grace", 28);
         TopherGrace.addFilm(SpiderMan3);
+        ActorList.Add(TobeyMaguire);
+        ActorList.Add(KirstenDunst);
+        ActorList.Add(TopherGrace);
         
         //The Dark Knight
         FilmJ TheDarkKnight = new FilmJ("The Dark Knight", 10, "Action", 2008, 1007695700f);
@@ -140,6 +185,9 @@ public class Main {
         HeathLedger.addFilm(TheDarkKnight);
         ActorJ AaronEckhart = new ActorJ("Aaron Eckhart", 31);
         AaronEckhart.addFilm(TheDarkKnight);
+        ActorList.Add(ChristianBale);
+        ActorList.Add(HeathLedger);
+        ActorList.Add(AaronEckhart);
         
         //Avengers: Endgame
         FilmJ AvengersEndgame = new FilmJ("Avengers: Endgame", 11, "Action", 2019, 2748240000f);
@@ -148,8 +196,16 @@ public class Main {
         RobertDowneyJr.addFilm(AvengersEndgame);
         ActorJ ChrisEvans = new ActorJ("Chris Evans", 33);
         ChrisEvans.addFilm(AvengersEndgame);
-        ActorJ ScarlettJohansson = new ActorJ("Scarlett Johansonn", 34);
+        ActorJ ScarlettJohansson = new ActorJ("Scarlett Johansson", 34);
         ScarlettJohansson.addFilm(AvengersEndgame);
+        ActorList.Add(RobertDowneyJr);
+        ActorList.Add(ChrisEvans);
+        ActorList.Add(ScarlettJohansson);
+        
+        recommendations.addFilmByGenre("Action", SpiderMan3);
+        recommendations.addFilmByGenre("Action", TheDarkKnight);
+        recommendations.addFilmByGenre("Action", AvengersEndgame);
+        GenreList.Add("Action");
         
         //Comedy
         
@@ -162,6 +218,9 @@ public class Main {
         HughGrant.addFilm(Paddington2);
         ActorJ SallyHawkins = new ActorJ("Sally Hawkins", 37);
         SallyHawkins.addFilm(Paddington2);
+        ActorList.Add(BenWhishaw);
+        ActorList.Add(HughGrant);
+        ActorList.Add(SallyHawkins);
         
         //The Lego Movie
         FilmJ TheLegoMovie = new FilmJ("The Lego Movie", 13, "Comedy", 2014, 467570000f);
@@ -172,16 +231,27 @@ public class Main {
         ElizabethBanks.addFilm(TheLegoMovie);
         ActorJ WillFerrell = new ActorJ("Will Ferrell", 40);
         WillFerrell.addFilm(TheLegoMovie);
+        ActorList.Add(ChrisPatt);
+        ActorList.Add(ElizabethBanks);
+        ActorList.Add(WillFerrell);
         
         //Zootopia
         FilmJ Zootopia = new FilmJ("Zootopia", 14, "Comedy", 2016, 1025485000f);
         FilmList.Add(Zootopia);
-        ActorJ GinniferGoodwin = new ActorJ("GinniferGoodwin", 41);
+        ActorJ GinniferGoodwin = new ActorJ("Ginnifer Goodwin", 41);
         GinniferGoodwin.addFilm(Zootopia);
         ActorJ JasonBateman = new ActorJ("Jason Bateman", 42);
         JasonBateman.addFilm(Zootopia);
         ActorJ IdrisElba = new ActorJ("Idris Elba", 43);
         IdrisElba.addFilm(Zootopia);
+        ActorList.Add(GinniferGoodwin);
+        ActorList.Add(JasonBateman);
+        ActorList.Add(IdrisElba);
+        
+        recommendations.addFilmByGenre("Comedy", Paddington2);
+        recommendations.addFilmByGenre("Comedy", TheLegoMovie);
+        recommendations.addFilmByGenre("Comedy", Zootopia);
+        GenreList.Add("Comedy");
         
         //Adventure
         
@@ -194,6 +264,9 @@ public class Main {
         KristenWiig.addFilm(WalterMitty);
         ActorJ SeanPenn = new ActorJ("Sean Penn", 46);
         SeanPenn.addFilm(WalterMitty);
+        ActorList.Add(BenStiller);
+        ActorList.Add(KristenWiig);
+        ActorList.Add(SeanPenn);
         
         //The Hobbit: An Unexpected Journey
         FilmJ TheHobbit = new FilmJ("The Hobbit: An Unexpected Journey", 16, "Adventure", 2012, 1014938000f);
@@ -204,16 +277,27 @@ public class Main {
         IanMcKellen.addFilm(TheHobbit);
         ActorJ RichardArmitage = new ActorJ("Richard Armitage", 49);
         RichardArmitage.addFilm(TheHobbit);
+        ActorList.Add(MartinFreeman);
+        ActorList.Add(IanMcKellen);
+        ActorList.Add(RichardArmitage);
         
         //Pirates of the Caribbean: The Curse of the Black Pearl
         FilmJ Pirates = new FilmJ("Pirates of the Caribbean: The Curse of the Black Pearl", 17, "Adventure", 2003, 654310800f);
         FilmList.Add(Pirates);
-        ActorJ JohnnyDepp = new ActorJ("Johhny Depp", 50);
+        ActorJ JohnnyDepp = new ActorJ("Johnny Depp", 50);
         JohnnyDepp.addFilm(Pirates);
         ActorJ OrlandoBloom = new ActorJ("Orlando Bloom", 51);
         OrlandoBloom.addFilm(Pirates);
         ActorJ KeiraKnightley = new ActorJ("Keira Knightley", 52);
         KeiraKnightley.addFilm(Pirates);
+        ActorList.Add(JohnnyDepp);
+        ActorList.Add(OrlandoBloom);
+        ActorList.Add(KeiraKnightley);
+        
+        recommendations.addFilmByGenre("Adventure", WalterMitty);
+        recommendations.addFilmByGenre("Adventure", TheHobbit);
+        recommendations.addFilmByGenre("Adventure", Pirates);
+        GenreList.Add("Adventure");
         
         RevenueA revenueManager = new RevenueA(FilmList);
         
@@ -247,6 +331,10 @@ public class Main {
                     double totalRevenue = Double.parseDouble(input.nextLine());
                     FilmJ film = new FilmJ(filmName, id, genre, releaseYear, totalRevenue);
                     FilmList.Add(film);
+                    String findGenre = GenreList.FindWithName(genre);
+                    if(findGenre == null)
+                        GenreList.Add(genre);
+                    recommendations.addFilmByGenre(genre, film);
                     id++;
                     break;
                 case 2:
@@ -309,10 +397,17 @@ public class Main {
                     {
                         System.out.print("Enter name of the actor : ");
                         String name = input.nextLine();
-                        ActorJ actor = new ActorJ(name, actorId);
-                        ActorList.Add(actor);
-                        System.out.println("Actor created successfully. Do you want to"
-                                + " assing films to this actor?");
+                        ActorJ tempActor = ActorList.FindWithName(name);
+                        ActorJ actor = null;
+                        if(tempActor == null)
+                        {
+                            actor = new ActorJ(name, actorId);
+                            ActorList.Add(actor);
+                            System.out.println("Actor created successfully.");
+                        }
+                        else
+                            actor = tempActor;
+                        System.out.println("Do you want to assign films to this actor?");
                         System.out.print("Enter 1 for yes, 2 for no : ");
                         int choose = Integer.parseInt(input.nextLine());
                         if(choose == 1)
@@ -329,6 +424,7 @@ public class Main {
                                 actor.addFilm(filmmm);
                                 System.out.print("Do you want to assign actor "
                                         + "to new film? 1 for yes, 2 for no : ");
+                                choose = Integer.parseInt(input.nextLine());
                                 if(choose == 1)
                                     addingFilm = true;
                                 else if(choose == 2)
@@ -340,16 +436,19 @@ public class Main {
                                 }
                                 System.out.println("");
                             }
+                            break;
                         }
                         else if (choose == 2)
                         {
                             System.out.println("Going back to main menu");
+                            break;
                         }
                         else
                         {
                             System.out.println("Wrong input, accepting the "
                                     + "response as no");
-                        }
+                            break;
+                        }   
                     }
                 case 4:
                     System.out.println("Which one do you want to search?");
@@ -432,7 +531,7 @@ public class Main {
                                     FilmJ filmSelected = FilmList.FindWithIndex(FilmindexChoice);
                                             
                                     System.out.print("Enter viewer count : ");
-                                    int viewerCount = Integer.parseInt(input.nextLine());
+                                    long viewerCount = Long.parseLong(input.nextLine());
                                     System.out.print("Enter ticket prices : ");
                                     double ticketPrice = Double.parseDouble(input.nextLine());
 
@@ -452,7 +551,8 @@ public class Main {
                                 break;
                             case 4:
                                 double totalRev = revenueManager.getTotalRevenue();
-                                System.out.println("Total revenue : $" + totalRev);
+                                String temp = String.format("%.0f", totalRev);
+                                System.out.println("Total revenue : $" + temp);
                                 break;
                             case 5:
                                 revenueManager.clearRevenueHistory();
@@ -470,6 +570,7 @@ public class Main {
                 case 6:
                     System.out.println("The revenue history : ");
                     revenueManager.displayRevenueHistory();
+                    break;
                 case 7:
                     for(int i = 0; i < FilmList.getSize(); i++)
                     {
@@ -531,6 +632,8 @@ public class Main {
                             }
                             break;
                         case 2:
+                            System.out.println("The list of genres : ");
+                            GenreList.printList();
                             System.out.print("Enter the genre to get recommendations : ");
                             String genreRecommend2 = input.nextLine();
                             LinkedList<FilmJ> recommendedFilms = recommendations.getRecommendations(genreRecommend2);
