@@ -1,7 +1,7 @@
 package com.dsproj.filmmanagmentdsproject;
 // Jalil Guliyev 220315102
 public class LinkedListJ<T> {
- private Node<T> head;
+    private Node<T> head;
     private Node<T> tail; // Tail pointer to optimize adding to the end of the list
     private int size = 0;
 
