@@ -62,7 +62,7 @@ public class LinkedList<T> //making this generic
     public T FindWithName(String name) //Exclusive for FilmJ and ActorJ class
     {
         Node current = head;
-        
+        System.out.println("Searching...");
         while(current != null)
         {
             if(current.data instanceof FilmJ)
@@ -77,6 +77,7 @@ public class LinkedList<T> //making this generic
                 if(actor.getName().equalsIgnoreCase(name))
                     return (T) current.data;
             }
+            current = current.next;
         }
         return null;
     }

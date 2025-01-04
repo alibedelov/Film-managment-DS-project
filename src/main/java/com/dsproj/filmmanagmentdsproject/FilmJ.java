@@ -24,7 +24,7 @@ public class FilmJ implements Comparable<FilmJ> {
         this.totalRevenue = totalRevenue; 
         this.actorList = new LinkedListJ<>(); 
         this.popularity = 0.0; 
-        this.averageRating = 0f;
+        this.averageRating = 1f;
         updatePopularity();
     }
 
