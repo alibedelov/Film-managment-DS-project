@@ -1,35 +1,35 @@
 package com.dsproj.filmmanagmentdsproject;
 // Jalil Guliyev 220315102
 public class LinkedListJ<T> {
-    private Node<T> head;
+ private Node<T> head;
     private Node<T> tail; // Tail pointer to optimize adding to the end of the list
     private int size = 0;
 
     // Adds a new element to the end of the linked list
     public void add(T data) {
         if (data == null) {
-            throw new IllegalArgumentException("Cannot add null data.");
+            throw new IllegalArgumentException("Can't add null data");
         }
 
         Node<T> newNode = new Node<>(data);
         if (head == null) {
             head = newNode; // If the list is empty, the new node becomes the head
-            tail = newNode; // The tail is also the new node
+            tail = newNode; 
         } else {
-            tail.next = newNode; // Link the new node at the end
-            tail = newNode; // Update the tail to the new node
+            tail.next = newNode; 
+            tail = newNode;
         }
         size++;
     }
 
     // Removes an element from the linked list
     public void remove(T data) {
-        if (head == null || data == null) return; // If the list is empty or data is null, do nothing
+        if (head == null || data == null) return;
 
         if (head.data.equals(data)) {
-            head = head.next; // If the head is the element to remove, update the head
+            head = head.next; 
             if (head == null) {
-                tail = null; // If the list becomes empty, reset the tail
+                tail = null; 
             }
             size--;
             return;
@@ -65,10 +65,10 @@ public class LinkedListJ<T> {
         return size;
     }
 
-    // Gets the element at a specific index (0-based)
+    // Gets the element at a specific index 
     public T get(int index) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException("Index out of range.");
+            throw new IndexOutOfBoundsException("Index out of range");
         }
 
         Node<T> current = head;
@@ -83,7 +83,7 @@ public class LinkedListJ<T> {
         Node<T> current = head;
         while (current != null) {
             System.out.println(current.data); // Print the data of each node
-            current = current.next; // Move to the next node
+            current = current.next; 
         }
     }
 
@@ -99,19 +99,24 @@ public class LinkedListJ<T> {
         return result.toString();
     }
 
+    // Clears the entire linked list
+    public void clear() {
+        head = null; 
+        tail = null; 
+        size = 0;   
+    }
+
     // Inner class representing a node in the linked list
     private static class Node<T> {
-        T data; // Data stored in the node
-        Node<T> next; // Reference to the next node
-
+        T data;
+        Node<T> next; 
         Node(T data) {
             this.data = data;
-            this.next = null; // Initialize the next reference as null
+            this.next = null; 
         }
     }
     
-    public boolean isEmpty()
-    {
+    public boolean isEmpty() {
         return size == 0;
     }
 }
