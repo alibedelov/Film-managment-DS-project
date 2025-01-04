@@ -58,7 +58,7 @@ public class RevenueA {
     public double getTotalRevenue() {
         double totalRevenue = 0.0;
         for (int i = 0; i < revenueStack.size(); i++) {
-            totalRevenue += revenueStack.get(i);  //Sum up all the revenue in the stack
+            totalRevenue += revenueStack.get(i);  //Sum up all revenue in the stack
         }
         return totalRevenue;
     }
@@ -76,4 +76,4 @@ public class RevenueA {
         }
         return lastNRevenues;
     }
-}
+}   
