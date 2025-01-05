@@ -384,71 +384,61 @@ public class Main {
                     }
                     break;
                 case 3:
-                    System.out.println("The list of films : ");
-                    FilmList.printList();
-                    System.out.print("Select the film you want to add actor to : ");
-                    int indexChoice2 = Integer.parseInt(input.nextLine());
-                    if(indexChoice2 >= id || indexChoice2 < 0)
+                    System.out.print("Enter name of the actor : ");
+                    String name = input.nextLine();
+                    ActorJ tempActor = ActorList.FindWithName(name);
+                    ActorJ actor = null;
+                    if(tempActor == null)
                     {
-                        System.out.println("Error: Wrong index choice.");
+                        actor = new ActorJ(name, actorId);
+                        ActorList.Add(actor);
+                        System.out.println("Actor created successfully.");
+                    }
+                    else
+                        actor = tempActor;
+                    System.out.println("Do you want to assign films to this actor?");
+                    System.out.print("Enter 1 for yes, 2 for no : ");
+                    int choose = Integer.parseInt(input.nextLine());
+                    if(choose == 1)
+                    {
+                        boolean addingFilm = true;
+                        while(addingFilm)
+                        {
+                            System.out.println("The list of films : ");
+                            FilmList.printList();
+                            System.out.print("Which film do you want to assign"
+                                    + " the actor to? (Enter index of film) : ");
+                            int theId = Integer.parseInt(input.nextLine());
+                            FilmJ filmmm = FilmList.FindWithIndex(theId);
+                            actor.addFilm(filmmm);
+                            System.out.println("Actor " + actor.getName() + " has been added to "
+                            + filmmm.getName());
+                            System.out.print("Do you want to assign actor "
+                                    + "to new film? 1 for yes, 2 for no : ");
+                            choose = Integer.parseInt(input.nextLine());
+                            if(choose == 1)
+                                addingFilm = true;
+                            else if(choose == 2)
+                                addingFilm = false;
+                            else
+                            {
+                                System.out.println("Wrong choice, accepting "
+                                        + "the response as no");
+                            }
+                            System.out.println("");
+                        }
+                        break;
+                    }
+                    else if (choose == 2)
+                    {
+                        System.out.println("Going back to main menu");
                         break;
                     }
                     else
                     {
-                        System.out.print("Enter name of the actor : ");
-                        String name = input.nextLine();
-                        ActorJ tempActor = ActorList.FindWithName(name);
-                        ActorJ actor = null;
-                        if(tempActor == null)
-                        {
-                            actor = new ActorJ(name, actorId);
-                            ActorList.Add(actor);
-                            System.out.println("Actor created successfully.");
-                        }
-                        else
-                            actor = tempActor;
-                        System.out.println("Do you want to assign films to this actor?");
-                        System.out.print("Enter 1 for yes, 2 for no : ");
-                        int choose = Integer.parseInt(input.nextLine());
-                        if(choose == 1)
-                        {
-                            boolean addingFilm = true;
-                            while(addingFilm)
-                            {
-                                System.out.println("The list of films : ");
-                                FilmList.printList();
-                                System.out.print("Which film do you want to assign"
-                                        + " the actor to? (Enter index of film) : ");
-                                int theId = Integer.parseInt(input.nextLine());
-                                FilmJ filmmm = FilmList.FindWithIndex(theId);
-                                actor.addFilm(filmmm);
-                                System.out.print("Do you want to assign actor "
-                                        + "to new film? 1 for yes, 2 for no : ");
-                                choose = Integer.parseInt(input.nextLine());
-                                if(choose == 1)
-                                    addingFilm = true;
-                                else if(choose == 2)
-                                    addingFilm = false;
-                                else
-                                {
-                                    System.out.println("Wrong choice, accepting "
-                                            + "the response as no");
-                                }
-                                System.out.println("");
-                            }
-                            break;
-                        }
-                        else if (choose == 2)
-                        {
-                            System.out.println("Going back to main menu");
-                            break;
-                        }
-                        else
-                        {
-                            System.out.println("Wrong input, accepting the "
-                                    + "response as no");
-                            break;
-                        }   
+                        System.out.println("Wrong input, accepting the "
+                                + "response as no");
+                        break;
                     }
                 case 4:
                     System.out.println("Which one do you want to search?");
