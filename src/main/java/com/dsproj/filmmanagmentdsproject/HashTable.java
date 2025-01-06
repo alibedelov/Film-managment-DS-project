@@ -109,9 +109,15 @@ public class HashTable<K, V> //adding K and V to make it generic
     {
         for(int i = 0; i < capacity; i++)
         {
-            System.out.println("Bucket " + i + ": "); //printing each bucket and values
-            table[i].printList();
-            System.out.println();
+            System.out.println("Bucket " + i + ": ");
+            LinkedList<Entry> bucket = table[i];
+            if (bucket != null && !bucket.isEmpty()) 
+            {
+                System.out.println(bucket);
+            } else 
+            {
+                System.out.println("Empty");
+            }
         }
     }
 }

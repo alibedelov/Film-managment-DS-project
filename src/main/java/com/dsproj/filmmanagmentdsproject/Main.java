@@ -22,7 +22,7 @@ public class Main {
         LinkedList<String> GenreList = new LinkedList<String>();
         
         Heap popularityHeap = new Heap(100);
-        Recommendations recommendations = new Recommendations(50);
+        Recommendations recommendations = new Recommendations(10);
         ViewerFeedback viewerFeedback = new ViewerFeedback();
         
         //Animation genre

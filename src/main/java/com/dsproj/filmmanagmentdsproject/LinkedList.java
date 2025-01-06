@@ -127,6 +127,11 @@ public class LinkedList<T> //making this generic
         System.out.println("Null");
     }
     
+    public boolean isEmpty()
+    {
+        return size == 0;
+    }
+    
     public Node<T> getHead()
     {
         return head;
@@ -145,5 +150,21 @@ public class LinkedList<T> //making this generic
     public void setSize(int size)
     {
         this.size = size;
+    }
+    
+    @Override
+    public String toString()
+    {
+        String result = "[";
+        Node current = head;
+        while(current != null)
+        {
+            result += current.data.toString();
+            if(current.next != null)
+                result += "\n";
+            current = current.next;
+        }
+        result += "]";
+        return result;
     }
 }
