@@ -33,19 +33,6 @@ The **Film Management Application** is a Java-based project designed to store an
    java Main
    ```
 
-## File Structure
-```
-film-management/
-│── src/
-│   ├── Main.java
-│   ├── Film.java
-│   ├── ActorList.java
-│   ├── FilmHeap.java
-│   ├── FilmHashTable.java
-│── README.md
-│── LICENSE
-```
-
 ## Future Improvements
 - Implement a GUI for better user interaction.
 - Add file-based data persistence.
